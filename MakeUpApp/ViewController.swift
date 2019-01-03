@@ -60,7 +60,7 @@ extension ViewController: UITableViewDataSource {
         
         let makeupToSet = makeUp[indexPath.row]
        cell.productName.text = makeupToSet.name
-       // cell.textLabel?.text = makeupToSet.brand
+       
         if let price = makeupToSet.price {
             cell.priceTag.text = "$" + String(price)
         } else {
@@ -80,7 +80,7 @@ extension ViewController: UITableViewDataSource {
             }
         }
         
-        //
+        
         return cell
     }
 }
@@ -88,17 +88,11 @@ extension ViewController: UITableViewDataSource {
 
 extension ViewController: UISearchBarDelegate {
     func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
-//        print(searchBar.text)
-//        if let searchTerm = searchBar.text {
-//           self.makeUp.filter($0)
-//        }
-//        searchBar.resignFirstResponder()
-//
-        searchBar.resignFirstResponder() // resign == keyboard
+
+        searchBar.resignFirstResponder()
         guard let searchText = searchBar.text else { return }
         
-        // user can enter "classic" or "egg"
-        //results should return "Classic Deviled Eggs"
+    
         makeUp = makeUp.filter{ ($0.name?.contains(searchText))!}
     }
     

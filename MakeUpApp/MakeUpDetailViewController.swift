@@ -25,7 +25,7 @@ class MakeUpDetailViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
+       // String.deleteHTMLTag(Makeup.description ?? "no info found")
         nameLabel.text = Makeup.name
         brandLabel.text = Makeup.brand
         
@@ -41,14 +41,34 @@ class MakeUpDetailViewController: UIViewController {
                 print("Image error is \(error)")
             }
         }
-
+       
+        
         if let description = Makeup.description {
-        MakeupDescription.text = description
+            func deleteHTMLTag(tag:String) -> String {
+                let description2 = description.replacingOccurrences(of: "(?i)</?\(tag)\\b[^<]*>", with: " ")
+                 return description2
+            }
+            MakeupDescription.text = deleteHTMLTag(tag: description)
+            
         } else {
             MakeupDescription.text = "no info found"
         }
-    }
+   }
     
 
 
 }
+
+//extension String {
+//    func deleteHTMLTag(tag:String) -> String {
+//        return self.replacingOccurrences(of: "(?i)</?\(tag)\\b[^<]*>", with: "", options: .regularExpression, range: nil)
+//    }
+//
+//    func deleteHTMLTags(tags:[String]) -> String {
+//        var mutableString = self
+//        for tag in tags {
+//            mutableString = mutableString.deleteHTMLTag(tag: tag)
+//        }
+//        return mutableString
+//    }
+//}

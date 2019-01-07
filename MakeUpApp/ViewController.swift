@@ -61,10 +61,18 @@ extension ViewController: UITableViewDataSource {
         let makeupToSet = makeUp[indexPath.row]
        cell.productName.text = makeupToSet.name
        
+//        if let price = makeupToSet.price {
+//            cell.priceTag.text = "$" + String(price)
+//        } else {
+//            cell.priceTag.text = "No Data"
+//        }
+        
         if let price = makeupToSet.price {
-            cell.priceTag.text = "$" + String(price)
-        } else {
-            cell.priceTag.text = "$$$"
+            if price == "0.0" {
+                cell.priceTag.text = "n/a"
+            } else {
+                cell.priceTag.text = "$" + String(price)
+            }
         }
         
         
@@ -85,6 +93,11 @@ extension ViewController: UITableViewDataSource {
     }
 }
 
+extension ViewController: UITableViewDelegate {
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return 100
+    }
+}
 
 extension ViewController: UISearchBarDelegate {
     func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {

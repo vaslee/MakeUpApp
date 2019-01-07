@@ -43,9 +43,9 @@ class MakeUpDetailViewController: UIViewController {
         }
        
         
-        if let description = Makeup.description {
+        if let description = Makeup.description { // change HTML to String
             func deleteHTMLTag(tag:String) -> String {
-                let description2 = description.replacingOccurrences(of: "(?i)</?\(tag)\\b[^<]*>", with: " ")
+                let description2 = description.replacingOccurrences(of: "<[^>]+>", with: "", options: .regularExpression, range: nil)
                  return description2
             }
             MakeupDescription.text = deleteHTMLTag(tag: description)
@@ -58,17 +58,3 @@ class MakeUpDetailViewController: UIViewController {
 
 
 }
-
-//extension String {
-//    func deleteHTMLTag(tag:String) -> String {
-//        return self.replacingOccurrences(of: "(?i)</?\(tag)\\b[^<]*>", with: "", options: .regularExpression, range: nil)
-//    }
-//
-//    func deleteHTMLTags(tags:[String]) -> String {
-//        var mutableString = self
-//        for tag in tags {
-//            mutableString = mutableString.deleteHTMLTag(tag: tag)
-//        }
-//        return mutableString
-//    }
-//}

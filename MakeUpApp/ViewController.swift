@@ -60,16 +60,11 @@ extension ViewController: UITableViewDataSource {
         
         let makeupToSet = makeUp[indexPath.row]
        cell.productName.text = makeupToSet.name
-       
-//        if let price = makeupToSet.price {
-//            cell.priceTag.text = "$" + String(price)
-//        } else {
-//            cell.priceTag.text = "No Data"
-//        }
+
         
         if let price = makeupToSet.price {
             if price == "0.0" {
-                cell.priceTag.text = "n/a"
+                cell.priceTag.text = "$$$"
             } else {
                 cell.priceTag.text = "$" + String(price)
             }

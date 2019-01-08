@@ -100,11 +100,19 @@ extension ViewController: UISearchBarDelegate {
         searchBar.resignFirstResponder()
         guard let searchText = searchBar.text else { return }
         
-    
-        makeUp = makeUp.filter{ ($0.name?.contains(searchText))!}
+        if searchText == "" {
+            MakeupAPIClient.getMakeup() { (data, error) in
+                if let error = error {
+                    print(error)
+                } else if let data = data {
+                    self.makeUp = data
+                    
+                }
+            }
+        } else {
+            makeUp = makeUp.filter{ ($0.name?.contains(searchText))!}
+        }
+        
+        searchBar.text = ""
     }
-    
-    
-    
-    
 }

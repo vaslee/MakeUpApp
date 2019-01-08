@@ -26,7 +26,7 @@ class ViewController: UIViewController {
         super.viewDidLoad()
         MakeupTableView.dataSource = self
         MakeupSearchBar.delegate = self
-        
+        title = "Make Up"
         MakeupAPIClient.getMakeup() { (data, error) in
             if let error = error {
                 print(error)

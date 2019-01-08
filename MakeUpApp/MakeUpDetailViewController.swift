@@ -28,7 +28,7 @@ class MakeUpDetailViewController: UIViewController {
        // String.deleteHTMLTag(Makeup.description ?? "no info found")
         nameLabel.text = Makeup.name
         brandLabel.text = Makeup.brand
-        
+        title = Makeup.name
         link.text = Makeup.product_link
         
         if let url = URL.init(string: Makeup.image_link) {

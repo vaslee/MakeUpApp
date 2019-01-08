@@ -64,7 +64,7 @@ extension ViewController: UITableViewDataSource {
         
         if let price = makeupToSet.price {
             if price == "0.0" {
-                cell.priceTag.text = "$$$"
+                cell.priceTag.text = "$$"
             } else {
                 cell.priceTag.text = "$" + String(price)
             }
